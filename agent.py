@@ -4,7 +4,6 @@ from pydantic_ai import Agent
 from pydantic_ai.models.groq import GroqModel
 import streamlit as st
 import asyncio
-from pages.summarize import get_history
 # Load environment variables from .env file
 load_dotenv()
 
@@ -56,8 +55,7 @@ except FileNotFoundError:
 story_agent = Agent(
     model=model,
     system_prompt=system_prompt,
-    retries=2,
-    message_history=get_history()
+    retries=2
 )
 
 def get_story_agent(user_prompt : str):

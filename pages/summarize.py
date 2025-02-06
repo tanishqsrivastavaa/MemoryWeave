@@ -2,7 +2,8 @@ import json
 import streamlit as st
 import os
 from pydantic_ai.messages import ModelMessage,ModelRequest,ModelResponse,TextPart,UserPromptPart
-from agent import get_story_agent
+from agent import story_agent
+import asyncio
 JSON_FILE = "captured_images.json"
 
 # Load captured images
@@ -14,11 +15,7 @@ def load_captured_images():
     except (FileNotFoundError, json.JSONDecodeError):
         return {}
 
-message_history = list[ModelMessage]
-
-def get_history():
-        return message_history
-
+message_history : list[ModelMessage] = []
 
 # Streamlit app
 def main():
@@ -26,7 +23,7 @@ def main():
     with open("validated_class_names.txt", "r") as file:
         validated_class_names = file.read()
         message_history.append(ModelRequest(parts=[UserPromptPart(content=validated_class_names)]))
-    summary = get_story_agent(validated_class_names) 
+    summary = asyncio.run(story_agent.run(user_prompt=validated_class_names,message_history=message_history))
     message_history.append(ModelResponse(parts=[TextPart(content=summary)]))   
 
     
@@ -55,7 +52,7 @@ def main():
     if st.session_state["selected_image"]:
         st.subheader("Selected Image")
         st.image(st.session_state["selected_image"], caption="Captured Image", use_container_width=True)
-        st.write(f"{summary}")
+        st.write(f"{summary.data}")
 
 
 

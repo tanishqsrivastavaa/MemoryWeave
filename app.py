@@ -7,7 +7,6 @@ from ultralytics import YOLO
 from ultralytics.utils import LOGGER
 from ultralytics.utils.checks import check_requirements
 from datetime import datetime
-import streamlit_webrtc as webrtc
 from agent import get_initial_agent
 import asyncio
 
