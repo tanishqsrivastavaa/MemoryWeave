@@ -1,0 +1,9 @@
+person
+backpack
+chair
+laptop
+mouse
+keyboard
+cell phone
+book
+clock
