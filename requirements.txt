@@ -1,5 +1,5 @@
-pydantic-ai
-streamlit
-ultralytics
-opencv
+pydantic-ai == 0.0.22
+streamlit == 1.42.0
+ultralytics == 8.3.72
+opencv == 4.11.0.86
 
