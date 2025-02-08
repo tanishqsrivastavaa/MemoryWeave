@@ -74,7 +74,7 @@ This is a lecture on AI ethics. The speaker is discussing the importance of fair
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/memory-weave.git
+   git clone https://github.com/yourusername/memoryweave.git
    cd memory-weave
    ```
 
